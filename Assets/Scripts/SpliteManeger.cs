@@ -17,7 +17,7 @@ public class SpliteManeger : MonoBehaviour {
 
     public Sprite[] puzzleSprites;
 
-    public UIMainGame iMainGame;
+   // public UIMainGame iMainGame;
 
     public SpriteRenderer[,] spriteRenderers;
     private SpriteRenderer[,] allSpriteRenderers;
@@ -29,8 +29,8 @@ public class SpliteManeger : MonoBehaviour {
         puzzleSprite = puzzleSprites[UtilityManeger.currentLevel];
         puzzleUnite=puzzleSize[UtilityManeger.currentLevel];
 
-        iMainGame.previewImage.sprite =puzzleSprites[UtilityManeger.currentLevel];
-        iMainGame.previewButtonImage.sprite = puzzleSprites[UtilityManeger.currentLevel];
+        uiMainGame.previewImage.sprite =puzzleSprites[UtilityManeger.currentLevel];
+        uiMainGame.previewButtonImage.sprite = puzzleSprites[UtilityManeger.currentLevel];
         BlockCreater(puzzleUnite);
     }
 	
@@ -122,7 +122,7 @@ public class SpliteManeger : MonoBehaviour {
 
 
     public void WinCheaker() {
-
+        uiMainGame.soundController.PopUpClick();
         foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
 
             if (spriteRenderer.GetComponent<Block>().isActive&&!spriteRenderer.GetComponent<Block>().Match())

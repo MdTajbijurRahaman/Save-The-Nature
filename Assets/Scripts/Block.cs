@@ -11,7 +11,7 @@ public class Block : MonoBehaviour {
 
     public int imagePositionX;
     public int imagePositionY;
-
+   
     private SpliteManeger spliteManeger;
 
     private bool isClicked = false;
@@ -116,6 +116,7 @@ public class Block : MonoBehaviour {
         imagePositionY = imageY;
 
         UtilityManeger.currentStep++;
+       
         spliteManeger.WinCheaker();
     }
 

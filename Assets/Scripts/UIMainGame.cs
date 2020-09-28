@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIMainGame : MonoBehaviour {
 
-    public AudioSource audioSource;
-    public AudioSource backGround;
+    public SoundController soundController;
     public GameObject winPanelPopup;
     public GameObject preViewPanelPopup;
     public GameObject startButton;
@@ -53,21 +52,20 @@ public class UIMainGame : MonoBehaviour {
         startButton.SetActive(true);
         closeButton.SetActive(false);
 
-        if (UtilityManeger.isSound)
-        {
-            audioSource.mute = false;
-            backGround.mute = false;
-        }
-        else
-        {
-            audioSource.mute = true;
-            backGround.mute = true;
-        }
+        if (UtilityManeger.isSound)       
+            soundController.OnPlay();
+            
+        else        
+            soundController.OnMute();
+        
 
 
     }
 
+    
+
     public void WinPanelPopUpOpen() {
+        soundController.WinSound();
         if (UtilityManeger.currentStep > UtilityManeger.highestStep)
         {
             UtilityManeger.highestStep = UtilityManeger.currentStep;
@@ -91,12 +89,13 @@ public class UIMainGame : MonoBehaviour {
     }
 
     public void HomeAndBackButtonClick() {
+        soundController.ButtonClick();
         SceneManager.LoadScene(0);
     }
 
     public void NextButtonClick() {
-       
 
+        soundController.ButtonClick();
         UtilityManeger.currentLevel++;
         if (UtilityManeger.currentLevel==UtilityManeger.levelTotal) 
             UtilityManeger.currentLevel = 0;
@@ -115,12 +114,14 @@ public class UIMainGame : MonoBehaviour {
    
 
     public void PreViewButtonClick() {
+        soundController.ButtonClick();
         preViewPanelPopup.SetActive(true);
         startButton.SetActive(false);
         closeButton.SetActive(true);
     }
 
     public void StartAndButtonClick() {
+        soundController.ButtonClick();
         preViewPanelPopup.SetActive(false);
         startButton.SetActive(false);
         closeButton.SetActive(false);

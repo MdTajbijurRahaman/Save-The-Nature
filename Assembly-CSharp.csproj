@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Block.cs" />
+     <Compile Include="Assets\Scripts\SoundController.cs" />
      <Compile Include="Assets\Scripts\SpliteManeger.cs" />
      <Compile Include="Assets\Scripts\UIMainGame.cs" />
      <Compile Include="Assets\Scripts\UIManeger.cs" />

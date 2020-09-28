@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManeger : MonoBehaviour {
 
-    public AudioSource audioSource;
+    public SoundController soundController;
    public GameObject levelPanel;
    public GameObject settingPanel;
    public Image soundButtonImage;
@@ -40,12 +40,12 @@ public class UIManeger : MonoBehaviour {
 
         if (UtilityManeger.isSound)
         {
-            audioSource.mute = false;
+            soundController.OnPlay(); 
             soundButtonImage.sprite = soundSprites[1];
         }
         else
         {
-            audioSource.mute = true;
+            soundController.OnMute();
             soundButtonImage.sprite = soundSprites[0];
         }
 
@@ -65,24 +65,29 @@ public class UIManeger : MonoBehaviour {
 
         if (UtilityManeger.unlockLevel - 1 >= index)
         {
+            soundController.ButtonClick();
             UtilityManeger.currentLevel = index;
             SceneManager.LoadScene(index+1);
         }
     }
 
     public void PlayButtonClick() {
+        soundController.ButtonClick();
         levelPanel.SetActive(true);
     }
 
     public void SettingButtonClick() {
+        soundController.ButtonClick();
         settingPanel.SetActive(true);
     }
 
     public void SettingCloseButtonClick() {
+        soundController.ButtonClick();
         settingPanel.SetActive(false);
     }
 
     public void ShareButtonClick() {
+        soundController.ButtonClick();
 #if UNITY_ANDROID
         // Get the required Intent and UnityPlayer classes.
         AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
@@ -101,12 +106,14 @@ public class UIManeger : MonoBehaviour {
 #endif
     }
 
-    public void InAppPurChaseButtonClick() { }
+    public void InAppPurChaseButtonClick() {
+        soundController.ButtonClick();
+    }
 
     public void LanguageButtonClick() {
         UtilityManeger.isEnglish = !UtilityManeger.isEnglish;
         UtilityManeger.SaveLanguage();
-
+        soundController.ButtonClick();
         if (UtilityManeger.isEnglish)
             languageButtonImage.sprite = languageButtonSprites[0];
         else
@@ -118,12 +125,12 @@ public class UIManeger : MonoBehaviour {
         UtilityManeger.SaveSound();
         if (UtilityManeger.isSound)
         {
-            audioSource.mute = false;
+            soundController.OnPlay();
             soundButtonImage.sprite = soundSprites[1];
         }
         else
         {
-            audioSource.mute = true;
+            soundController.OnMute();
             soundButtonImage.sprite = soundSprites[0];
         }
 
